@@ -70,19 +70,32 @@ def get_option():
     full_value_bet = game_data[-1]
     len_game_data = len(game_data) - 1
 
+    data_departure = {'option_user': option_user, 'games_played': len_game_data}
+
     if len_game_data == 0:
         value_to_vet = get_value_to_bet()
-        data_game = get_winner(option_user, value_to_vet, value_to_vet, len_game_data)
+
+        data_departure.setdefault('full_value_bet', value_to_vet)
+        data_departure.setdefault('value_to_bet', value_to_vet)
+
+        data_game = get_winner(data_departure)
 
     elif len_game_data > 0:
 
+        data_departure.setdefault('full_value_bet', full_value_bet['current_value'])
+
         if full_value_bet['is_winner'] and full_value_bet['current_value'] != 0:
-            data_game = get_winner(option_user, full_value_bet['current_value'], full_value_bet['current_value'], len_game_data)
+            data_departure.setdefault('value_to_bet', full_value_bet['current_value'])
+            data_game = get_winner(data_departure)
         else:
-            data_game = get_winner(option_user, full_value_bet['current_value'], get_value_to_bet(), len_game_data)
+            data_departure.setdefault('value_to_bet', get_value_to_bet())
+            data_game = get_winner(data_departure)
 
     else:
-        data_game = get_winner(option_user, full_value_bet['current_value'], get_value_to_bet(), len_game_data)
+        data_departure.setdefault('full_value_bet', full_value_bet['current_value'])
+        data_departure.setdefault('value_to_bet', get_value_to_bet())
+
+        data_game = get_winner(data_departure)
 
     game_data.append(data_game)
     return
@@ -92,10 +105,10 @@ def get_value_to_bet():
     print()
     value_to_bet = input('Ingresa el valor a apostar: ')
 
-    if not value_to_bet.isnumeric() or int(value_to_bet) <= 0:
+    if not value_to_bet.isnumeric() or float(value_to_bet) <= 0:
         print('Valor incorrecto, por favor...')
         return get_value_to_bet()
-    return int(value_to_bet)
+    return float(value_to_bet)
 
 
 game_start()
