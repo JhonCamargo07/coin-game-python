@@ -18,27 +18,30 @@ def get_side_random():
     return random.choice(heads_tails)
 
 
-def get_winner(option_user, full_value_bet, value_to_bet, games_played):
-    data = {}
+def get_winner(data_departure):
+    game_data = {}
     side = get_side_random()
     print(f'\nEl ganador es: {side}')
-    data.setdefault('ending_balance', value_to_bet)
-    if option_user == side:
+    game_data.setdefault('ending_balance', data_departure['value_to_bet'])
+
+    if data_departure['option_user'] == side:
         print(' Ganaste '.upper().center(17, '*'))
-        if full_value_bet < 0:
-            data.setdefault('current_value', full_value_bet + value_to_bet)
+        if data_departure['full_value_bet'] < 0:
+            game_data.setdefault('current_value', data_departure['full_value_bet'] + data_departure['value_to_bet'])
         else:
-            data.setdefault('current_value', (value_to_bet * 2))
-        data.setdefault('is_winner', True)
+            game_data.setdefault('current_value', (data_departure['value_to_bet'] * 2))
+        game_data.setdefault('is_winner', True)
+
     else:
         print(' Perdiste '.upper().center(18, '-'))
-        data.setdefault('current_value', full_value_bet - value_to_bet)
-        data.setdefault('is_winner', False)
-    data.setdefault('total_games', games_played + 1)
+        game_data.setdefault('current_value', data_departure['full_value_bet'] - data_departure['value_to_bet'])
+        game_data.setdefault('is_winner', False)
+    game_data.setdefault('total_games', data_departure['games_played'] + 1)
+
     print()
-    return data
+    return game_data
 
 
 if __name__ == '__main__':
-    for data in range(1):
-        print(get_winner(option_user='CARA', full_value_bet=0, value_to_bet=1000, games_played=0))
+    for data in range(100):
+        print(get_winner({'option_user': 'CARA', 'full_value_bet': 0, 'value_to_bet': 1000, 'games_played': 0}))
