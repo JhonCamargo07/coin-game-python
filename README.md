@@ -18,9 +18,6 @@ Clone this repository
 git clone https://github.com/JhonCamargo07/heads-tails-python
 ```
 
-In a terminal (shell) put:
-```commandline
-main.py
-```
+Open the file 'heads-tails.exe'
 
 By [Jhon Camargo](https://jhoncamargo.000webhostapp.com/)
