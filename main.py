@@ -105,10 +105,10 @@ def get_value_to_bet():
     print()
     value_to_bet = input('Ingresa el valor a apostar: ')
 
-    if not value_to_bet.isnumeric() or int(value_to_bet) <= 0:
+    if not value_to_bet.isnumeric() or float(value_to_bet) <= 0:
         print('Valor incorrecto, por favor...')
         return get_value_to_bet()
-    return int(value_to_bet)
+    return float(value_to_bet)
 
 
 game_start()
