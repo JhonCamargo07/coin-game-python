@@ -15,10 +15,24 @@ def game_start():
     game_reload()
 
 
+def reset_game():
+    game_data.clear()
+    game_data.append({'ending_balance': 0, 'current_value': 0, 'is_winner': None, 'total_games': 0})
+
+
 def print_welcome():
     welcome = 'Bienvenido a cara o sello'
     print(f' {welcome} '.center(len(welcome) + 50, '='))
     print(random.choice(phrases_welcome))
+
+
+def print_creation_information():
+    by = ' Desarrollado por Jhon Camargo '
+    print('\nGracias por jugar con nosotros')
+    print()
+    print(''.center(len(by) + 30, '*'))
+    print(f'{by}'.center(len(by) + 30, '*'))
+    print(''.center(len(by) + 30, '*'))
 
 
 def game_reload():
@@ -41,16 +55,17 @@ def game_reload():
 
             for data in game_data:
                 if data['is_winner'] != None:
-                    print(f'Juego #{data["total_games"]}\n\tGan\u00f3: {data["is_winner"]}\n\tSaldo inicial: {data["ending_balance"]}\n\tSaldo final: {data["current_value"]}')
+                    print(f'Juego #{data["total_games"]}\n\tGan\u00f3: {data["is_winner"]}\n\tSaldo inicial: {data["ending_balance"]:,.2f}\n\tSaldo final: {data["current_value"]:,.2f}')
                     if data['is_winner']:
                         total_games_wom += 1
 
             print(f'\nTotal juegos ganados {total_games_wom}/{len(game_data)-1}')
-            print(f'Saldo final: {ending_balance["current_value"]}')
+            print(f'Saldo final: {ending_balance["current_value"]:,.2f}')
 
             print(f'\n{random.choice(phrases_finished)}')
             message_finished = 'Juego terminado'
             print(f' {message_finished} '.center(len(message_finished) + 50, '='))
+            return
 
     except Exception as e:
         print(f'Ocurri\u00f3 un error: {e}')
@@ -112,3 +127,13 @@ def get_value_to_bet():
 
 
 game_start()
+continue_playing = "SI"
+
+while continue_playing == "SI":
+    print('\n¿Quieres jugar de nuevo?')
+    continue_playing = input('Escriba "si" o "no": ').upper()
+    if continue_playing != "SI":
+        print_creation_information()
+        break
+    reset_game()
+    game_reload()
