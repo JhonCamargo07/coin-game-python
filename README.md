@@ -4,8 +4,12 @@ This application is a coin game, you flip a coin to see which side it lands on (
 
 ### Game preview
 
-![Preview](img/preview.png)
+![Preview](img/preview0.png)
+![Preview](img/preview1.png)
 ![Preview](img/preview2.png)
+![Preview](img/preview3.png)
+![Preview](img/preview4.png)
+
 
 ### Flowchart
 
