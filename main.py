@@ -1,5 +1,6 @@
 import random
 from game_logic import get_winner
+from drawings import print_drawing_welcome, print_drawing_exit
 
 MIN_GAMES = 3
 game_data = [{'ending_balance': 0, 'current_value': 0, 'is_winner': None, 'total_games': 0}]
@@ -21,6 +22,7 @@ def reset_game():
 
 
 def print_welcome():
+    print_drawing_welcome()
     welcome = 'Bienvenido a cara o sello'
     print(f' {welcome} '.center(len(welcome) + 50, '='))
     print(random.choice(phrases_welcome))
@@ -30,6 +32,9 @@ def print_creation_information():
     by = ' Desarrollado por Jhon Camargo '
     print('\nGracias por jugar con nosotros')
     print()
+
+    print_drawing_exit()
+
     print(''.center(len(by) + 30, '*'))
     print(f'{by}'.center(len(by) + 30, '*'))
     print(''.center(len(by) + 30, '*'))
