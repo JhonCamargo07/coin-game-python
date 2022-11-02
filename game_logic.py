@@ -25,15 +25,15 @@ def get_winner(data_departure):
     game_data.setdefault('ending_balance', data_departure['value_to_bet'])
 
     if data_departure['option_user'] == side:
-        print(' Ganaste '.upper().center(17, '*'))
+        print(' GANASTE '.center(17, '*'))
         if data_departure['full_value_bet'] < 0:
-            game_data.setdefault('current_value', data_departure['full_value_bet'] + data_departure['value_to_bet'])
+            game_data.setdefault('current_value', data_departure['full_value_bet'] + data_departure['value_to_bet'] * 2)
         else:
-            game_data.setdefault('current_value', (data_departure['value_to_bet'] * 2))
+            game_data.setdefault('current_value', data_departure['value_to_bet'] * 2)
         game_data.setdefault('is_winner', True)
 
     else:
-        print(' Perdiste '.upper().center(18, '-'))
+        print(' PERDISTE '.center(18, '-'))
         game_data.setdefault('current_value', data_departure['full_value_bet'] - data_departure['value_to_bet'])
         game_data.setdefault('is_winner', False)
     game_data.setdefault('total_games', data_departure['games_played'] + 1)

@@ -5,10 +5,26 @@ from drawings import print_drawing_welcome, print_drawing_exit
 MIN_GAMES = 3
 game_data = [{'ending_balance': 0, 'current_value': 0, 'is_winner': None, 'total_games': 0}]
 
-phrases_welcome = ['\u00bfCrees poder ganarle al destino? ... Prob\u00e9moslo', 'El destino hoy no est\u00e1 de tu lado \u00bfo si?', 'No hay manera de ganarme, pero intentalo...', 'Hoy puedes perder todo lo que apuestes \u00bfAun as\u00ed quieres apostar?', 'Comprueba si hoy es tu d\u00eda de suerte']
-phrases_option = ['\u00bfBuena elecci\u00f3n? Pronto lo sabremos', 'Tu respuesta fue r\u00e1pida \u00bfpero inteligente?', '\u00bfSeguro que era la opci\u00f3n correcta?', 'zzzz eres muy lento para elegir', 'Sabia decisi\u00f3n, ahora estoy temblando', 'Jajaj\u00e1 debiste escoger la otra opci\u00f3n', 'Est\u00e1 bien, yo elegir\u00e9 la otra opci\u00f3n']
-phrases_continue = ['Okay, okay, vamos de nuevo', 'Tienes otra oportunidad \u00bfla aprovechar\u00e1s?', 'De acuerdo, continuemos', 'Despu\u00e9s del resultado como te sientes \u00bfListo para la siguiente?', 'Estoy at\u00f3nito por saber que pasar\u00e1']
-phrases_finished = ['De acuerdo, fue un placer jugar contigo', '\u00bfTe cansaste?, espero volver a jugar contigo', 'Solo los cobardes huyen del campo de batalla', 'Jugaste bien baquero', 'Bien hecho guerrero, el valhalla te espera']
+phrases_welcome = ['\u00bfCrees poder ganarle al destino? ... Prob\u00e9moslo',
+                   'El destino hoy no est\u00e1 de tu lado \u00bfo si?',
+                   'No hay manera de ganarme, pero intentalo...',
+                   'Hoy puedes perder todo lo que apuestes \u00bfAun as\u00ed quieres apostar?',
+                   'Comprueba si hoy es tu d\u00eda de suerte']
+
+phrases_option = ['\u00bfBuena elecci\u00f3n? Pronto lo sabremos',
+                  'Tu respuesta fue r\u00e1pida \u00bfpero inteligente?',
+                  '\u00bfSeguro que era la opci\u00f3n correcta?', 'zzzz eres muy lento para elegir',
+                  'Sabia decisi\u00f3n, ahora estoy temblando', 'Jajaj\u00e1 debiste escoger la otra opci\u00f3n',
+                  'Est\u00e1 bien, yo elegir\u00e9 la otra opci\u00f3n']
+
+phrases_continue = ['Okay, okay, vamos de nuevo', 'Tienes otra oportunidad \u00bfla aprovechar\u00e1s?',
+                    'De acuerdo, continuemos',
+                    'Despu\u00e9s del resultado como te sientes \u00bfListo para la siguiente?',
+                    'Estoy at\u00f3nito por saber que pasar\u00e1']
+
+phrases_finished = ['De acuerdo, fue un placer jugar contigo', '\u00bfTe cansaste?, espero volver a jugar contigo',
+                    'Solo los cobardes huyen del campo de batalla', 'Jugaste bien baquero',
+                    'Bien hecho guerrero, el valhalla te espera']
 
 
 def game_start():
@@ -104,7 +120,7 @@ def get_option():
 
         data_departure.setdefault('full_value_bet', full_value_bet['current_value'])
 
-        if full_value_bet['is_winner'] and full_value_bet['current_value'] != 0:
+        if full_value_bet['is_winner'] and full_value_bet['current_value'] > 0:
             data_departure.setdefault('value_to_bet', full_value_bet['current_value'])
             data_game = get_winner(data_departure)
         else:
